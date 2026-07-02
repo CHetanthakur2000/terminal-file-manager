@@ -1,25 +1,29 @@
 # Terminal File Manager
 
-A simple Terminal File Manager built with Python using the os module.
+A simple Terminal File Manager built with Python using the `os` module.
 
 ## Features
 
-- Show Current Directory
-- Change Directory
-- List Files & Folders
-- Search Files
-- Create File
-- Create Folder
-- Rename File/Folder
-- Delete File
-- Delete Folder
-- Show File Information
+- Show current directory
+- Change directory
+- List files and folders
+- Search files
+- Create files
+- Create folders
+- Rename files and folders
+- Delete files
+- Delete folders
+- View file information
+- Basic exception handling (try-except)
 
 ## Technologies Used
 
-- Python
-- os Module
+- Python 3
+- os module
+- Git
+- GitHub
 
 ## How to Run
 
+```bash
 python main.py

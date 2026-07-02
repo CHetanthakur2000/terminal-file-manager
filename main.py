@@ -25,10 +25,11 @@ while True:
 		
 	elif user == "2":
 		Directory = input("Enter your directory name: ")
-		if os.path.isdir(Directory):
+		try:
 			os.chdir(Directory)
 			print("current directory: ",os.getcwd())
-		else:
+		except:
+			
 			print("directory not found")
 	elif user == "3":
 		for entry in os.scandir():
@@ -73,56 +74,64 @@ while True:
 	elif user == "7":
 		current_file = input("current file or folder name: ")
 		rename_file = input("enter your rename file or folder name: ")
-		
-		if os.path.exists(rename_file):
-			
-			
-			print("file name already exists")
-			
-		else:
+		try:
 			os.rename(current_file,rename_file)
-			print("file name successfully changes")
+			print("file name changed")
+		except:
+			print("this name is not vaible or file not found")
 			print("location",os.path.abspath(rename_file))
 	
 	
 	elif user == "8":
 		del_file_name = input("Enter file name for delete: ")
-		if not os.path.isfile(del_file_name):
-			print("this name file not found for delete")
-		else:
+		try:
 			os.remove(del_file_name)
-			print("file deleted successfully",del_file_name)
+			print("file deleted successfully")
+		except FileNotFoundError:
+			print("file not found: ",del_file_name)
+		except IsADirectoryError:
+			print("this is a directory")
 			print("location:",os.path.abspath(del_file_name))
 	
 	
 	elif user == "9":
 		del_folder_name = input("Enter your folder name for delete ensure fisrt delete folder files: ")
-		if not os.path.isdir(del_folder_name):
-			print("no folder from this name")
-		else:
+		try:
 			os.rmdir(del_folder_name)
-			print("folder delete successfully")
+			print("folder deleted")
+		except FileNotFoundError:
+			print("Folder not found or this is file")
 			
+		except OSError:
+		  print("Folder is not empty")
+		
+		
+		
 	elif user == "10":
 		detail_file_folder = input("enter your file or folder name details: ")
-		if not os.path.exists(detail_file_folder):
-			print("file not found for detail")
-		else:
-			print("="*8,"File Detail","="*8)
-			print("FILE NAME: ",detail_file_folder)
-			print("FILE AVAIBLE: ",os.path.isfile(detail_file_folder))
-			print("FILE PATH: ",os.path.abspath(detail_file_folder))
-			info = os.stat(detail_file_folder)
-			print("file Size: ",info.st_size / 1024,"KB")
-			print("Last Modified: ",info.st_mtime)
-			print("Access time: ", info.st_atime )
+		try:
+				
+				info = os.stat(detail_file_folder)
+				print("="*8,"File Detail","="*8)
+				print("FILE NAME: ",detail_file_folder)
+				print("FILE AVAIBLE: ",os.path.isfile(detail_file_folder))
+				print("FILE PATH: ",os.path.abspath(detail_file_folder))
+				print("file Size: ",info.st_size / 1024,"KB")
+				print("Last Modified: ",info.st_mtime)
+				print("Access time: ", info.st_atime )
+				print("="*35)
+		except FileNotFoundError:
+				
+				print("file not found")
 			
-			
-			print("="*35)
-			
-	else:
-	 	user == "11"
+	elif user == "11":
+	 	print("thankyou for using our terminal file manager💗")
 	 	break
+	 	
+	 
+	else:
+	 	
+	 	print("invalid choice")
 			
 		
 		
